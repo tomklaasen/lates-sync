@@ -127,6 +127,11 @@ function syncCookingBlocks() {
       return; // don't create events in the past
     }
 
+    var day = start.getDay();
+    if (day === 0 || day === 6) {
+      return; // skip weekends
+    }
+
     Logger.log('Creating cooking block for ' + dateKey);
     var event = calendar.createEvent(COOKING_TITLE, start, end);
     event.setDescription(AUTO_MARKER);
