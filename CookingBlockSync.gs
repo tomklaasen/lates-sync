@@ -8,7 +8,7 @@ const COOKING_START_HOUR = 17;
 const COOKING_START_MINUTE = 30;
 const COOKING_END_HOUR = 20;
 const COOKING_END_MINUTE = 0;
-const LOOK_AHEAD_DAYS = 31;
+const LOOK_AHEAD_DAYS = 90;
 
 // Marker in the event description to identify auto-created blocks.
 // Do not change this after first run, or orphan events will remain.
