@@ -36,7 +36,7 @@ The ICS feed URL and shift name are stored as **Script Properties** so they stay
 | Property | Value |
 |---|---|
 | `ICS_URL` | The full URL of your ICS calendar feed |
-| `SHIFT_NAME` | The exact event name to match (e.g. `L7,6 13:30 N17`) |
+| `SHIFT_NAME` | The exact event name(s) to match. Separate multiple names with `\|` (e.g. `L7,6 13:30 N17\|L7,6 14:00 N17`) |
 
 4. Click **Save script properties**
 
@@ -70,7 +70,7 @@ Set these in Project Settings > Script Properties:
 | Property | Description |
 |---|---|
 | `ICS_URL` | URL of the ICS calendar feed to monitor |
-| `SHIFT_NAME` | Exact event name that identifies the target shift |
+| `SHIFT_NAME` | Exact event name(s) that identify the target shift. Separate multiple with `\|` |
 
 ### Constants (in `CookingBlockSync.gs`)
 

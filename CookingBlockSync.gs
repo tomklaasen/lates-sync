@@ -71,9 +71,9 @@ function getRequiredProperty(key) {
 
 function syncCookingBlocks() {
   var icsUrl = getRequiredProperty('ICS_URL');
-  var shiftName = getRequiredProperty('SHIFT_NAME');
+  var shiftNames = getRequiredProperty('SHIFT_NAME').split('|').map(function(s) { return s.trim(); });
 
-  const lateShiftDates = fetchLateShiftDates(icsUrl, shiftName);
+  const lateShiftDates = fetchLateShiftDates(icsUrl, shiftNames);
   Logger.log('Late shifts found: ' + [...lateShiftDates].join(', '));
 
   const calendar = CalendarApp.getDefaultCalendar();
@@ -140,7 +140,7 @@ function syncCookingBlocks() {
 
 // === ICS fetching & parsing ===
 
-function fetchLateShiftDates(icsUrl, shiftName) {
+function fetchLateShiftDates(icsUrl, shiftNames) {
   var response = UrlFetchApp.fetch(icsUrl);
   var icsText = response.getContentText();
 
@@ -161,7 +161,7 @@ function fetchLateShiftDates(icsUrl, shiftName) {
     }
     // ICS escapes commas as \, and semicolons as \; — unescape before comparing
     var summary = summaryMatch[1].trim().replace(/\\,/g, ',').replace(/\\;/g, ';');
-    if (summary !== shiftName) {
+    if (shiftNames.indexOf(summary) === -1) {
       continue;
     }
 
