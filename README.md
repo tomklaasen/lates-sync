@@ -8,7 +8,7 @@ This Google Apps Script monitors an external ICS calendar feed for specific shif
 - Finds events matching a configurable shift name
 - Creates a blocking event (default: "Koken", 17:30–20:00) on each of those days in your default Google Calendar
 - Removes the blocking event if the corresponding shift disappears
-- Looks one month ahead
+- Looks 90 days ahead
 - Runs once a day on a timer
 
 ## Setup
@@ -81,7 +81,7 @@ Set these in Project Settings > Script Properties:
 | `COOKING_START_MINUTE` | `30` | Start minute of the blocking event |
 | `COOKING_END_HOUR` | `20` | End hour of the blocking event |
 | `COOKING_END_MINUTE` | `0` | End minute of the blocking event |
-| `LOOK_AHEAD_DAYS` | `31` | How many days ahead to scan |
+| `LOOK_AHEAD_DAYS` | `90` | How many days ahead to scan |
 | `AUTO_MARKER` | `[auto-cooking-block]` | Description text used to identify auto-created events. Do not change after first run. |
 
 ## How it tracks its own events
@@ -103,7 +103,7 @@ This means:
 ### No shifts found
 - Check the execution log for errors
 - The ICS feed URL may have changed — verify it's still accessible by opening it in a browser
-- The shift name may have changed — check the ICS feed content for the current SUMMARY values
+- The shift name may have changed — check the ICS feed content for the current SUMMARY values and add the new name to `SHIFT_NAME` using `|` as separator
 
 ### Duplicate events
 - This can happen if `AUTO_MARKER` was changed. Delete the orphaned events manually and keep `AUTO_MARKER` consistent going forward.
